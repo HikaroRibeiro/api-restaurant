@@ -1,0 +1,26 @@
+{
+  "name": "api-restaurant",
+  "version": "1.0.0",
+  "description": "API para gerenciar pedidos das mesas de um restaurante.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --ext .ts --fix",
+    "dev": "tsx --watch ./src/server.ts"
+  },
+  "keywords": [],
+  "author": "Hikaro Hakawama Ribeiro",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.14.12",
+    "eslint": "^8.57.1",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.4"
+  }
+}
