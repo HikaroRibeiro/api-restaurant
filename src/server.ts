@@ -10,10 +10,6 @@ server.use(express.json())
 server.use(routes)
 server.use(errorHandling)
 
-console.log(
-  `Connection file: ${process.env.DATABASE_PATH}, Client database: ${process.env.CLIENT_DATABASE}`,
-)
-
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })
