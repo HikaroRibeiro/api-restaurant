@@ -15,8 +15,10 @@ class DesksSessionController {
       const sessionOpened = await knex<DesksSessionRepository>('desks_session')
         .select()
         .where({ desk_id })
-        .orderBy('desk_id', 'desc')
+        .orderBy('opened_at', 'desc')
         .first()
+
+      // return res.json({ sessionOpened })
 
       if (sessionOpened && !sessionOpened.closed_at) {
         throw new AppError(`The desk with id ${desk_id} has already opened!`)
@@ -38,7 +40,14 @@ class DesksSessionController {
   async index(req: Request, res: Response, next: NextFunction) {
     try {
       const desksSessions = await knex<DesksSessionRepository>('desks_session')
-        .select()
+        .select(
+          'desks_session.id',
+          'desks_session.desk_id',
+          'desks.table_number',
+          'desks_session.opened_at',
+          'desks_session.closed_at',
+        )
+        .join('desks', 'desks.id', 'desks_session.desk_id')
         .orderBy('closed_at')
       return res.status(201).json(desksSessions)
     } catch (error) {
