@@ -1,0 +1,27 @@
+version: '5.0.1'
+
+services:
+  api-rocket:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs
+    container_name: api-rocket
+    ports:
+      - "3333:3333"
+    depends_on:
+      - postgres
+  postgres:
+    image: "bitnami/postgresql:latest"
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db-api-rocket
+    volumes:
+      - database:/var/lib/postgresql/data
+
+volumes:
+  database:
